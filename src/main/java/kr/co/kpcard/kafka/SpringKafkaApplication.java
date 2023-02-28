@@ -1,4 +1,4 @@
-package kr.co.kpcard.springkafka;
+package kr.co.kpcard.kafka;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

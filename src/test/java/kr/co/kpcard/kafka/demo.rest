@@ -1,0 +1,5 @@
+POST http://localhost:8088/kafka/?message=write%201st%20message
+###
+POST http://localhost:8088/kafka/?message=write%202nd%20message
+###
+POST http://localhost:8088/kafka/?message=write%203rd%20message

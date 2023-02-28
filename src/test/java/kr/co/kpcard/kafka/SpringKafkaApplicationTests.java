@@ -1,4 +1,4 @@
-package kr.co.kpcard.springkafka;
+package kr.co.kpcard.kafka;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
