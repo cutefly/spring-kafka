@@ -12,3 +12,29 @@ spring:
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 server:
   port: 8088
+
+## database
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://xxx.xxx.xxx.xxx:5432/playground
+    username: kpcuser
+    password: kpcard
+ 
+## jpa
+spring:
+  jpa:
+    show-sql: true
+    hibernate.ddl-auto: reate
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+ 
+## logging
+logging:
+  level:
+    org.hibernate.sql: debug
+    org.hibernate.type.descriptor.sql.spi: trace
