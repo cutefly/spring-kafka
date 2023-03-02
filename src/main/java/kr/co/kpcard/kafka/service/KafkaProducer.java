@@ -22,7 +22,7 @@ public class KafkaProducer {
     private KafkaMessageRepository kafkaMessageRepository;
 
     public void sendMessage(String message) {
-        log.info("Produce message: {}", message);
+        log.info("Produce message : {}", message);
 
         KafkaMessage kafkaMessage = new KafkaMessage();
         kafkaMessage.setMessage(message);
@@ -30,6 +30,6 @@ public class KafkaProducer {
         kafkaMessageRepository.save(kafkaMessage);
         log.info("Saved message id : {}, message : {}", kafkaMessage.getId(), kafkaMessage.getMessage());
 
-        this.kafkaTemplate.send(TOPIC, message);
+        this.kafkaTemplate.send(TOPIC, kafkaMessage.getId().toString());
     }
 }
