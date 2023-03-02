@@ -28,6 +28,14 @@ public class KafkaMessage {
     private Long id;
 
     @Setter
+    @Column(name = "item_type")
+    private String itemType;
+
+    @Setter
+    @Column(name = "item_key")
+    private String itemKey;
+
+    @Setter
     @Column(name = "message")
     private String message;
 

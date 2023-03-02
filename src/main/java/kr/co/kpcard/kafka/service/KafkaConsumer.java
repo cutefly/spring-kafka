@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+import kr.co.kpcard.kafka.model.Item;
 import kr.co.kpcard.kafka.persistence.model.KafkaMessage;
 import kr.co.kpcard.kafka.persistence.repository.KafkaMessageRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -20,13 +21,15 @@ public class KafkaConsumer {
     private KafkaMessageRepository kafkaMessageRepository;
 
     @KafkaListener(topics = "exam", groupId = "foo")
-    public void consume(String id) throws IOException {
-        Optional<KafkaMessage> kafkaMessage = kafkaMessageRepository.findById(Long.parseLong(id));
+    public void consume(Item item) throws IOException {
+        log.info("Consume message : {}", item);
+
+        Optional<KafkaMessage> kafkaMessage = kafkaMessageRepository.findById(item.getId());
 
         kafkaMessage.ifPresent(m -> {
             m.setStatus("CONSUMED");
             kafkaMessageRepository.save(m);
-            log.info("Consumed message : {}", m.getMessage());
+            log.info("Processed message : {}", m.getMessage());
         });
     }
 }

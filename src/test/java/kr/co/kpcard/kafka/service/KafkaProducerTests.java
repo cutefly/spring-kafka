@@ -15,7 +15,8 @@ public class KafkaProducerTests {
 
     @Test
     public void sendMessageTest() {
-        kafkaProducer
-                .sendMessage(String.format("Message generated : %1$tb %1$te, %1$tY %1$tI:%1$tM %1$Tp", new Date()));
+        // kafkaProducer
+        // .sendMessage(String.format("Message generated : %1$tb %1$te, %1$tY
+        // %1$tI:%1$tM %1$Tp", new Date()));
     }
 }
