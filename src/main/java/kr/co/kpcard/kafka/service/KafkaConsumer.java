@@ -3,6 +3,7 @@ package kr.co.kpcard.kafka.service;
 import java.io.IOException;
 import java.util.Optional;
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -21,9 +22,13 @@ public class KafkaConsumer {
     private KafkaMessageRepository kafkaMessageRepository;
 
     @KafkaListener(topics = "exam", groupId = "foo")
-    public void consume(Item item) throws IOException {
-        log.info("Consume message : {}", item);
+    public void consume(ConsumerRecord<String, Item> consumerRecord) throws IOException {
+        log.info("Consumer reconde topic : {}, offset : {}, message : {}",
+                consumerRecord.topic(),
+                consumerRecord.offset(),
+                consumerRecord.value());
 
+        Item item = consumerRecord.value();
         Optional<KafkaMessage> kafkaMessage = kafkaMessageRepository.findById(item.getId());
 
         kafkaMessage.ifPresent(m -> {

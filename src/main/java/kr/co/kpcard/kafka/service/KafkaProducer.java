@@ -1,5 +1,6 @@
 package kr.co.kpcard.kafka.service;
 
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,10 @@ public class KafkaProducer {
         kafkaMessageRepository.save(kafkaMessage);
         log.info("Saved message : {}", item);
 
+        ProducerRecord<String, Object> producerRecord;
+
         item.setId(kafkaMessage.getId());
-        this.kafkaTemplate.send(TOPIC, item);
+        producerRecord = new ProducerRecord<>(TOPIC, item.getType(), item);
+        kafkaTemplate.send(producerRecord);
     }
 }
