@@ -24,9 +24,9 @@ public class KafkaControllerTests {
     public void sendItemTest() {
         Item item = Item.builder()
                 .type("palrago")
-                .key("20230303084000")
+                .key(String.valueOf(System.currentTimeMillis()))
                 .action("CREATED")
-                .message("2nd message")
+                .message("new message")
                 .build();
 
         kafkaController

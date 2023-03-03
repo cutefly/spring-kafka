@@ -16,7 +16,7 @@ Content-Type: application/json
 
 {
   "type": "palrago",
-  "key": "20230303191400",
+  "key": "20230303225900",
   "action": "CREATE",
   "message": "장터거래 등록"
 }
