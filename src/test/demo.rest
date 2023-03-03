@@ -16,6 +16,18 @@ Content-Type: application/json
 
 {
   "type": "palrago",
-  "key": "20230302193900",
-  "message": "hello world"
+  "key": "20230303160400",
+  "action": "CREATE",
+  "message": "장터거래 등록"
+}
+
+###
+POST http://localhost:8088/kafka/sendItem
+Content-Type: application/json
+
+{
+  "type": "mobilepop",
+  "key": "20230303161600",
+  "action": "UPDATE",
+  "message": "환불거래 발생"
 }

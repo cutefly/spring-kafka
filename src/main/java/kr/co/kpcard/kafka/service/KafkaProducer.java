@@ -28,16 +28,15 @@ public class KafkaProducer {
 
         // Save to database
         KafkaMessage kafkaMessage = new KafkaMessage();
+
         kafkaMessage.setItemType(item.getType());
         kafkaMessage.setItemKey(item.getKey());
+        kafkaMessage.setItemAction(item.getAction());
         kafkaMessage.setMessage(item.getMessage());
         kafkaMessage.setStatus("PRODUCED");
+
         kafkaMessageRepository.save(kafkaMessage);
-        log.info("Saved message id : {}, itemType : {}, itemId : {}, message : {}",
-                kafkaMessage.getId(),
-                kafkaMessage.getItemType(),
-                kafkaMessage.getItemKey(),
-                kafkaMessage.getMessage());
+        log.info("Saved message : {}", item);
 
         item.setId(kafkaMessage.getId());
         this.kafkaTemplate.send(TOPIC, item);
