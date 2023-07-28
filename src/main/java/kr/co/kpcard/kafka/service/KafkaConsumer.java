@@ -21,15 +21,12 @@ public class KafkaConsumer {
     @Autowired
     private KafkaMessageRepository kafkaMessageRepository;
 
-    @KafkaListener(topics = "exam", groupId = "foo")
-    public void consume(ConsumerRecord<String, Item> consumerRecord) throws IOException {
-        log.info("Consumer reconde topic : {}, offset : {}, message : {}",
-                consumerRecord.topic(),
-                consumerRecord.offset(),
-                consumerRecord.value());
+    @KafkaListener(topics = "quickstart", groupId = "java-app")
+    public void consume(String message) throws IOException {
+        log.info("message : %s", message);
 
-        Item item = consumerRecord.value();
-        Optional<KafkaMessage> kafkaMessage = kafkaMessageRepository.findById(item.getId());
+        Long id = Long.parseLong(message);
+        Optional<KafkaMessage> kafkaMessage = kafkaMessageRepository.findById(id);
 
         kafkaMessage.ifPresent(m -> {
             m.setStatus("CONSUMED");

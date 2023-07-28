@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class KafkaProducer {
-    private static final String TOPIC = "exam";
+    private static final String TOPIC = "quickstart";
     @Autowired
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
@@ -39,10 +39,7 @@ public class KafkaProducer {
         kafkaMessageRepository.save(kafkaMessage);
         log.info("Saved message : {}", item);
 
-        ProducerRecord<String, Object> producerRecord;
-
         item.setId(kafkaMessage.getId());
-        producerRecord = new ProducerRecord<>(TOPIC, item.getType(), item);
-        kafkaTemplate.send(producerRecord);
+        kafkaTemplate.send(TOPIC, item.getId().toString());
     }
 }
