@@ -1,7 +1,7 @@
 spring:
   kafka:
     consumer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: 172.16.3.196:9092
       group-id: foo
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -12,18 +12,24 @@ spring:
             trusted:
               packages: "*"
     producer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: 172.16.3.196:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-  ## database
+  ## database(postgresql)
+  # datasource:
+  #   driver-class-name: org.postgresql.Driver
+  #   url: jdbc:postgresql://localhost:5432/kpcdb
+  #   username: kpcuser
+  #   password: kpcard1@
+  ## database(H2)
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/kpcdb
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:./data
     username: kpcuser
     password: kpcard1@
   ## jpa
   jpa:
-    database: postgresql
+    database: h2
     show-sql: true
     hibernate:
       ddl-auto: update

@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class KafkaProducer {
-    private static final String TOPIC = "exam";
+    private static final String TOPIC = "chris.study.mytopic";
     @Autowired
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
