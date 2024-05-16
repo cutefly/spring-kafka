@@ -14,5 +14,5 @@
 http://localhost:8088/h2-console/
 url: jdbc:h2:file:./data
 username: kpcuser
-password: kpcard1@
+password: ********
 

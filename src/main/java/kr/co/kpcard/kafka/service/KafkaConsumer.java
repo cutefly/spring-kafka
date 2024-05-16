@@ -21,7 +21,7 @@ public class KafkaConsumer {
     @Autowired
     private KafkaMessageRepository kafkaMessageRepository;
 
-    @KafkaListener(topics = "chris.study.mytopic", groupId = "foo")
+    @KafkaListener(topics = "chris.study.mytopic")
     public void consume(ConsumerRecord<String, Item> consumerRecord) throws IOException {
         log.info("Consumer reconde topic : {}, offset : {}, message : {}",
                 consumerRecord.topic(),
